@@ -1,23 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState} from 'react';
+import MenuStart from './components/StartMenu/MenuStart';
+import Game from './components/GamePieces/Game';
 
 function App() {
+  const [gameState, setGameState] = useState(true);
+  const [players, setPlayers] = useState([]);
+
+  const changeGameState = gameStateInput =>{
+    setGameState(gameStateInput);
+  }
+
+  const setPlayerNames = playerNames =>{
+      setPlayers([
+        playerNames.player1Name,
+        playerNames.player2Name
+      ]);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1> React Tac Toe</h1>
+      {gameState ? (
+        <MenuStart
+          getPlayerNames={setPlayerNames}
+          gameStateChange={changeGameState}
+        />
+      ) : (
+        <Game names={players} gameStateChange={changeGameState} />
+      )}
     </div>
   );
 }
