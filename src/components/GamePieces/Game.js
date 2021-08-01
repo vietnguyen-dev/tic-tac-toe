@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Board from "./Board";
-import WinScreen from "../StartMenu/WinScreen";
+import EndScreen from "../Menus/EndScreen";
 const Game = props => {
     const [playerTurn, setPlayerTurn] = useState([props.names[0], "X"]);
-    const [winner, setWinner] = useState("");
+    const [endState, setEndState] = useState("");
 
     const changeCurrentPlayer = turnValue =>{
       switch(turnValue){
@@ -21,27 +21,32 @@ const Game = props => {
     const deciperWinner = character =>{
       switch(character){
         case "X":
-          setWinner(props.names[0]);
+          setEndState(props.names[0]);
           break;
         case "O":
-         setWinner(props.names[1]);
+         setEndState(props.names[1]);
+          break;
+        case character:
+         setEndState(character);
           break;
         default: 
           console.error(`playerTurn: ${playerTurn}`)
       }
     }
 
-    const resetGame = gameState =>{
+    const playAnother = gameState =>{
       props.gameStateChange(gameState);
     }
 
   return (
     <div>
       <h3>{playerTurn[0]}'s Turn</h3>
-      <Board turn={playerTurn[1]} changeTurn={changeCurrentPlayer} winnerDeclare={deciperWinner}/>
-      {
-        winner && <WinScreen winner={winner} reset={resetGame}/>
-      }
+      <Board
+        turn={playerTurn[1]}
+        changeTurn={changeCurrentPlayer}
+        winnerDeclare={deciperWinner}
+      />
+      {endState && <EndScreen ending={endState} playAgain={playAnother} />}
     </div>
   );
 };

@@ -9,7 +9,7 @@ const GameBoard = styled.div`
 
 const Board = props =>{
     let playerTurn = props.turn;
-    // const [boardValue, setBoardValue] = useState([]);
+    const [playCount, setPlayCount] = useState(0);
     const [boardValues, setBoardValues] = useState([
         [1, ""],
         [2, ""],
@@ -22,24 +22,49 @@ const Board = props =>{
         [9, ""]
     ]);
 
-    const checkWinState = () =>{
-        console.log(playerTurn, boardValues[0][1], boardValues[1][1], boardValues[2][1]);
-        if (boardValues[0][1] === "X" &&boardValues[1][1] === "X" &&boardValues[2][1] === "X") {
+    const checkWinState = boardValues =>{
+        //top row
+        if (boardValues[0][1] === playerTurn && boardValues[1][1] === playerTurn && boardValues[2][1] === playerTurn) {
           props.winnerDeclare(playerTurn);
-        }
+        } //middle row
+        else if (boardValues[3][1] === playerTurn && boardValues[4][1] === playerTurn && boardValues[5][1] === playerTurn) {
+          props.winnerDeclare(playerTurn);
+        } //bottom row
+        else if ( boardValues[6][1] === playerTurn && boardValues[7][1] === playerTurn && boardValues[8][1] === playerTurn) {
+          props.winnerDeclare(playerTurn);
+        } //left column
+        else if ( boardValues[0][1] === playerTurn && boardValues[3][1] === playerTurn && boardValues[6][1] === playerTurn) {
+          props.winnerDeclare(playerTurn);
+        } //middle column
+        else if ( boardValues[1][1] === playerTurn && boardValues[4][1] === playerTurn && boardValues[7][1] === playerTurn) {
+          props.winnerDeclare(playerTurn);
+        } // right column
+        else if (boardValues[0][1] === playerTurn && boardValues[3][1] === playerTurn && boardValues[6][1] === playerTurn) {
+          props.winnerDeclare(playerTurn);
+        } // left top diagnol
+        else if ( boardValues[0][1] === playerTurn && boardValues[4][1] === playerTurn && boardValues[8][1] === playerTurn) {
+          props.winnerDeclare(playerTurn);
+        } // right top diagnol
+        else if ( boardValues[2][1] === playerTurn && boardValues[4][1] === playerTurn && boardValues[6][1] === playerTurn) {
+          props.winnerDeclare(playerTurn);
+        } else if (playCount === 7){
+            props.winnerDeclare("tie");
+        }else{
+            console.log("no winner, keep playing")
+        }        
     }
 
     const setValue = value =>{
-        let updateValue = [value, playerTurn];
         let newArr = boardValues.map(i =>{
             if (i[0] === value) {
-              return (i = updateValue);
+              return i = [value, playerTurn];
             } else {
               return i;
             }
         })
         setBoardValues(newArr);
-        checkWinState();
+        setPlayCount(playCount + 1);
+        checkWinState(newArr);
         props.changeTurn(playerTurn);
     }
 
@@ -52,7 +77,7 @@ const Board = props =>{
             character={value[1]}
           />
         ))}
-        {/* {console.log(boardValues)} */}
+        {console.log(playCount)}
       </GameBoard>
     );
 }

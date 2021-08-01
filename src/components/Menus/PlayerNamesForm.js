@@ -5,23 +5,20 @@ const PlayerNamesForm = props =>{
     const [p2Name, setp2Name] = useState("");
 
     const changep1Name = event =>{
-        setp1Name(event.target.value);
+      setp1Name(event.target.value);
     }
 
     const changep2Name = event =>{
-        setp2Name(event.target.value);
+      setp2Name(event.target.value);
     }
 
     const submitPlayerNames = event =>{
         event.preventDefault();
-
         const data = {
             player1Name: p1Name,
             player2Name: p2Name
         }
-
         props.submitPlayerData(data, false);
-
         setp1Name("");
         setp2Name("");
     }

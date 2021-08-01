@@ -1,6 +1,6 @@
 import './App.css';
 import {useState} from 'react';
-import MenuStart from './components/StartMenu/MenuStart';
+import MenuStart from './components/Menus/MenuStart';
 import Game from './components/GamePieces/Game';
 
 function App() {
