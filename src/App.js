@@ -20,7 +20,6 @@ function App() {
 
   return (
     <div className="App">
-      <h1> React Tac Toe</h1>
       {gameState ? (
         <MenuStart
           getPlayerNames={setPlayerNames}

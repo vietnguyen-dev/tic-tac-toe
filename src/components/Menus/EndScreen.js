@@ -24,7 +24,6 @@ const EndScreen = props =>{
       <EndDiv>
         <GameState />
         <button onClick={() => props.playAgain(true)}> PLAY AGAIN </button>
-        {/* <button onClick={() => props.reset(true)}> RESET </button> */}
       </EndDiv>
     );
 }

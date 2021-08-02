@@ -47,10 +47,9 @@ const Board = props =>{
         } // right top diagnol
         else if ( boardValues[2][1] === playerTurn && boardValues[4][1] === playerTurn && boardValues[6][1] === playerTurn) {
           props.winnerDeclare(playerTurn);
-        } else if (playCount === 7){
+        } else if (playCount === 8){
             props.winnerDeclare("tie");
-        }else{
-            console.log("no winner, keep playing")
+        } else{
         }        
     }
 
@@ -77,7 +76,6 @@ const Board = props =>{
             character={value[1]}
           />
         ))}
-        {console.log(playCount)}
       </GameBoard>
     );
 }
