@@ -8,6 +8,22 @@ const EndDiv = styled.div`
   width: 100%;
   height: 100%;
   overflow: auto;
+  background-color: green;
+`;
+
+const PlayButton = styled.button`
+  padding: 1% 3%;
+  border-radius: 15px;
+  border: 3px solid blue;
+  color: blue;
+  font-size: 25px;
+  background-color: white;
+
+  &:hover {
+    border: 3px solid white;
+    color: white;
+    background-color: green;
+  }
 `;
 
 const EndScreen = props =>{
@@ -23,7 +39,12 @@ const EndScreen = props =>{
     return (
       <EndDiv>
         <GameState />
-        <button onClick={() => props.playAgain(true)}> PLAY AGAIN </button>
+        <PlayButton onClick={() => props.playOver()}>
+          PLAY AGAIN
+        </PlayButton> <br />
+        <PlayButton onClick={() => props.restart(true)}> 
+          RESTART
+        </PlayButton>
       </EndDiv>
     );
 }

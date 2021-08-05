@@ -11,7 +11,7 @@ function App() {
     setGameState(gameStateInput);
   }
 
-  const setPlayerNames = playerNames =>{
+  const setTwoPlayerNames = playerNames =>{
       setPlayers([
         playerNames.player1Name,
         playerNames.player2Name
@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       {gameState ? (
         <MenuStart
-          getPlayerNames={setPlayerNames}
+          getPlayerNames={setTwoPlayerNames}
           gameStateChange={changeGameState}
         />
       ) : (

@@ -34,8 +34,12 @@ const Game = props => {
       }
     }
 
-    const playAnother = gameState =>{
+    const startOver = gameState =>{
       props.gameStateChange(gameState);
+    }
+
+    const playAgain = () =>{
+      setEndState("");
     }
 
   return (
@@ -46,7 +50,7 @@ const Game = props => {
         changeTurn={changeCurrentPlayer}
         winnerDeclare={deciperWinner}
       />
-      {endState && <EndScreen ending={endState} playAgain={playAnother} />}
+      {endState && <EndScreen ending={endState} restart={startOver} playOver={playAgain} />}
     </div>
   );
 };

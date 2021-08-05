@@ -11,6 +11,7 @@ const MenuStartDiv = styled.div`
 `;
 
 const StartButton = styled.button`
+  margin-bottom: 5%;
   padding: 1% 3%;
   border-radius: 15px;
   border: 3px solid blue;
@@ -27,25 +28,34 @@ const StartButton = styled.button`
 
 const MenuStart = props =>{
   const [menuState, setMenuState] = useState(true);
+  // const [gameMode, setGameMode] = useState("");
 
     const OpenScreen = () =>{
       return (
         <div>
           <h1> React Tac Toe</h1>
-           <StartButton onClick={menuStateChange}>START</StartButton>
+          <StartButton
+            onClick={() => {
+              setMenuState(false);
+            }}
+          >
+            Single Player
+          </StartButton> <br/>
+          <StartButton
+            onClick={() => {
+              setMenuState(false);
+            }}
+          >
+            Two Player
+          </StartButton>
         </div>
       );
-    }
-
-    const menuStateChange = () =>{
-        setMenuState(false)
     }
 
     const getPlayerNames = (playerData, gameStateData) =>{
         props.getPlayerNames(playerData);
         props.gameStateChange(gameStateData);
     }
-
 
     return (
       <MenuStartDiv>
