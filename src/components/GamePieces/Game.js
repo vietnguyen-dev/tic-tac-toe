@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import Board from "./Board";
 import EndScreen from "../Menus/EndScreen";
 const Game = props => {
@@ -43,7 +43,7 @@ const Game = props => {
     }
 
   return (
-    <div>
+    <>
       <h3>{playerTurn[0]}'s Turn</h3>
       <Board
         endingStatus={endState}
@@ -52,7 +52,7 @@ const Game = props => {
         winnerDeclare={deciperWinner}
       />
       {endState && <EndScreen ending={endState} restart={startOver} playOver={playAgain} />}
-    </div>
+    </>
   );
 };
 

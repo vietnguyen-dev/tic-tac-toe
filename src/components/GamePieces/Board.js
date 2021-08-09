@@ -1,9 +1,8 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Square from './Square';
 import styled from 'styled-components';
 
 const GameBoard = styled.table`
-    background-color: aquamarine;
     margin: auto;
 `;
 
@@ -20,6 +19,10 @@ const Board = props =>{
         [7, ""], [8, ""], [9, ""]
       ]
     ]);
+    
+    useEffect(()=>{
+      setPlayCount(0);
+    }, [props.endingStatus]);
 
     const checkWinState = boardValues => {
      //top row
@@ -78,7 +81,7 @@ const Board = props =>{
         boardValues[2][0][1] === props.turn
       ) {
         endDeclare("win");
-      } else if (playCount === 7) {
+      } else if (playCount === 9) {
         endDeclare("tie");
       } else {
       }  
@@ -87,7 +90,7 @@ const Board = props =>{
     const endDeclare = endType =>{
       switch(endType){
         case "win":
-          resetBoard()
+          resetBoard();
           props.winnerDeclare(props.turn);
           break;
         case "tie":
@@ -126,7 +129,6 @@ const Board = props =>{
          props.changeTurn(props.turn);
     }
 
-    //how do I make this less repetitive?
     const resetBoard = () =>{
       //i in this case is rows of values
       //no matter if its filled or currently blank, change to blank
@@ -139,6 +141,7 @@ const Board = props =>{
     return (
       <GameBoard>
         <tbody>
+          {/* <tr><td>{playCount}</td></tr> */}
           <tr>
             {boardValues[0].map((value) => (
               <Square

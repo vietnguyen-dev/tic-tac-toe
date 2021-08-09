@@ -28,7 +28,7 @@ const StartButton = styled.button`
 
 const MenuStart = props =>{
   const [menuState, setMenuState] = useState(true);
-  // const [gameMode, setGameMode] = useState("");
+  const [gameMode, setGameMode] = useState("");
 
     const OpenScreen = () =>{
       return (
@@ -37,6 +37,7 @@ const MenuStart = props =>{
           <StartButton
             onClick={() => {
               setMenuState(false);
+              setGameMode('single');
             }}
           >
             Single Player
@@ -44,6 +45,7 @@ const MenuStart = props =>{
           <StartButton
             onClick={() => {
               setMenuState(false);
+              setGameMode("two-player");
             }}
           >
             Two Player
@@ -59,11 +61,11 @@ const MenuStart = props =>{
 
     return (
       <MenuStartDiv>
-        {menuState ? (
+        {menuState ? 
          <OpenScreen/>
-        ) : (
-          <PlayerNamesForm submitPlayerData={getPlayerNames} />
-        )}
+         : 
+          <PlayerNamesForm gameStyle={gameMode} submitPlayerData={getPlayerNames} />
+        }
        </MenuStartDiv>
     );
 }

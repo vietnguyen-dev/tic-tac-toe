@@ -1,13 +1,16 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, Fragment} from 'react';
 
 import styled from 'styled-components';
 
 const SquareCard = styled.td`
-    padding: 2% 4%;
-    border: 1px solid black;
-    height: 250px;
-    width: 250px;
-`
+  padding: 2% 4%;
+  border-bottom: 3px solid black;
+  border-right: 3px solid black;
+  height: 250px;
+  width: 250px;
+  border-radius: 25px;
+  background-color: aquamarine;
+`;
 
 const BigText = styled.p`
     font-size: 60px;

@@ -1,4 +1,4 @@
-import {useState, useRef} from 'react';
+import {useState, useRef, Fragment} from 'react';
 import NameFormError from "./NameFormError";
 import styled from 'styled-components';
 
@@ -76,7 +76,7 @@ const PlayerNamesForm = props =>{
     }
 
     return (
-      <div>
+      <>
         <form onSubmit={submitPlayerNames}>
           <InputDiv>
             <PlayerLabel>Player 1 Name</PlayerLabel>
@@ -94,7 +94,7 @@ const PlayerNamesForm = props =>{
           <SubmitButton type="submit">Submit</SubmitButton>
         </form>
         {errorModal && <NameFormError click={changeErrorModal}/>}
-      </div>
+      </>
     );
 }
 export default PlayerNamesForm;
