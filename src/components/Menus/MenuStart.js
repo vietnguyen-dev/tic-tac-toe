@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import OpenScreen from './OpenScreen';
 import PlayerNamesForm from './PlayerNamesForm';
 import styled from 'styled-components';
 
@@ -10,63 +11,35 @@ const MenuStartDiv = styled.div`
   box-shadow: 10px 10px 10px pink;
 `;
 
-const StartButton = styled.button`
-  margin-bottom: 5%;
-  padding: 1% 3%;
-  border-radius: 15px;
-  border: 3px solid blue;
-  color: blue;
-  font-size: 25px;
-  background-color: white;
-
-  &:hover {
-    border: 3px solid white;
-    color: white;
-    background-color: green;
-  }
-`;
-
 const MenuStart = props =>{
   const [menuState, setMenuState] = useState(true);
   const [gameMode, setGameMode] = useState("");
-
-    const OpenScreen = () =>{
-      return (
-        <div>
-          <h1> React Tac Toe</h1>
-          <StartButton
-            onClick={() => {
-              setMenuState(false);
-              setGameMode('single');
-            }}
-          >
-            Single Player
-          </StartButton> <br/>
-          <StartButton
-            onClick={() => {
-              setMenuState(false);
-              setGameMode("two-player");
-            }}
-          >
-            Two Player
-          </StartButton>
-        </div>
-      );
-    }
 
     const getPlayerNames = (playerData, gameStateData) =>{
         props.getPlayerNames(playerData);
         props.gameStateChange(gameStateData);
     }
 
+    const settingGameMode = mode =>{
+      setGameMode(mode)
+    }
+
+    const settingMenuState = state =>{
+      setMenuState(state);
+    }
+
     return (
       <MenuStartDiv>
-        {menuState ? 
-         <OpenScreen/>
-         : 
-          <PlayerNamesForm gameStyle={gameMode} submitPlayerData={getPlayerNames} />
-        }
-       </MenuStartDiv>
+        {menuState ? (
+          <OpenScreen setGame={settingGameMode} setMenu={settingMenuState} />
+        ) : (
+          <PlayerNamesForm
+            setMenu={settingMenuState}
+            gameStyle={gameMode}
+            submitPlayerData={getPlayerNames}
+          />
+        )}
+      </MenuStartDiv>
     );
 }
 
