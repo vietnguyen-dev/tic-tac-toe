@@ -30,9 +30,9 @@ const EndScreen = props =>{
 
     const GameState = () =>{
         if (props.ending !== 'tie'){
-            return <h3>{props.ending} Win!</h3>;
+            return <h1>{props.ending} Win!</h1>;
         } else if (props.ending === "tie") {
-          return <h3>It's a {`${props.ending}`}</h3>;
+          return <h1>It's a {`${props.ending}`}</h1>;
         }
     }
 

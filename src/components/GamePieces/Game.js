@@ -46,6 +46,7 @@ const Game = props => {
     <div>
       <h3>{playerTurn[0]}'s Turn</h3>
       <Board
+        endingStatus={endState}
         turn={playerTurn[1]}
         changeTurn={changeCurrentPlayer}
         winnerDeclare={deciperWinner}

@@ -91,7 +91,7 @@ const Board = props =>{
           props.winnerDeclare(props.turn);
           break;
         case "tie":
-           resetBoard();
+          resetBoard();
          props.winnerDeclare("tie");
          break;
         default:
@@ -101,7 +101,7 @@ const Board = props =>{
     }
 
     const setValue = (value, row) =>{
-      console.log(value, row)
+      // console.log(value, row)
        // i is each index in array
         let newArr = boardValues[row].map(i => { 
             if (i[0] === value) {
@@ -126,20 +126,15 @@ const Board = props =>{
          props.changeTurn(props.turn);
     }
 
-    //properly do this??
+    //how do I make this less repetitive?
     const resetBoard = () =>{
-      // i is each array
-      let newArr = boardValues.map((i) =>{
-        if (boardValues.findIndex(i) === 0){
-          return [[1, ""], [2, ''], [3, '']];
-        } else if (boardValues.findIndex(i) === 1){
-          return [[4, ""], [5, ''], [6, '']];
-        } else if (boardValues.findIndex(i) === 2){
-          return [[1, ""], [2, ''], [3, '']];
-        }
+      //i in this case is rows of values
+      //no matter if its filled or currently blank, change to blank
+      let newBoardArr = boardValues.map((row) =>{
+         return [[row[0][0], ""], [row[1][0], ""], [row[2][0], ""]]
       })
-    setBoardValues(newArr);
-  }
+      setBoardValues(newBoardArr);
+    }
 
     return (
       <GameBoard>
@@ -151,6 +146,7 @@ const Board = props =>{
                 key={value[0]}
                 character={value[1]}
                 id={`square${value[0]}`}
+                endState={props.endingStatus}
               />
             ))}
           </tr>
@@ -161,6 +157,7 @@ const Board = props =>{
                 key={value[0]}
                 character={value[1]}
                 id={`square${value[0]}`}
+                endState={props.endingStatus}
               />
             ))}
           </tr>
@@ -171,6 +168,7 @@ const Board = props =>{
                 key={value[0]}
                 character={value[1]}
                 id={`square${value[0]}`}
+                endState={props.endingStatus}
               />
             ))}
           </tr>

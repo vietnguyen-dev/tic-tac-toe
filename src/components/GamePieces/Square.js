@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 import styled from 'styled-components';
 
@@ -15,17 +15,10 @@ const BigText = styled.p`
 
 const Square = props =>{
   const [filled, setFilled] = useState(false)
-  // let elementId = props.id;
-    // useEffect(()=>{
 
-    //     document.getElementById(elementId).addEventListener("click", props.click);
-
-    //   return () =>{
-    //      document
-    //        .getElementById(elementId)
-    //        .removeEventListener("click", props.click);
-    //   }
-    // }, [props.children])
+    useEffect(()=>{
+      setFilled(false);
+    }, [props.endState])
 
     const setSquareFill = () =>{
       props.click();
