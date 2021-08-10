@@ -45,19 +45,20 @@ const PlayerNamesForm = props =>{
     const submitPlayerNames = event =>{
         event.preventDefault();
         switch (props.gameStyle) {
-          case "Single":
-             if (p1Name.current.value !== "") {
+          case true:
+             if (p1Name.current.value === "") {
               setErrorModal(true);
               resetPlayerNames();
             } else {
               const data = {
-                player1Name: p1Name.current.value,
+                player1Name: p1Name.current.value
               };
               props.submitPlayerData(data, false);
+              props.getGameStyle(props.gameStyle);
               resetPlayerNames();
             } 
             break;
-          case "Two Player":
+          case false:
             if (p1Name.current.value === p2Name.current.value) {
               setErrorModal(true);
               resetPlayerNames();
@@ -66,15 +67,15 @@ const PlayerNamesForm = props =>{
                 player1Name: p1Name.current.value,
                 player2Name: p2Name.current.value,
               };
-              props.submitPlayerData(data, false);
+              props.submitPlayersData(data, false);
+              props.getGameStyle(props.gameStyle);
               resetPlayerNames();
             } 
             break;
           default:
             console.error(props.gameStyle);
             break;
-        }
-      
+        } 
     }
 
     const changeErrorModal = boolParam =>{
@@ -83,11 +84,11 @@ const PlayerNamesForm = props =>{
     
     const backClick = () =>{
        switch (props.gameStyle) {
-         case "Single":
+         case true:
              p1Name.current.value = "";
              props.setMenu(true);
            break;
-         case "Two Player":
+         case false:
              p1Name.current.value = "";
              p2Name.current.value = "";
              props.setMenu(true);
@@ -99,7 +100,7 @@ const PlayerNamesForm = props =>{
     }
 
     const ProperForm = () =>{
-      if (props.gameStyle === "Single"){
+      if (props.gameStyle === true){
         return (
           <SinglePlayerForm
             gameType={props.gameStyle}
@@ -107,7 +108,7 @@ const PlayerNamesForm = props =>{
             submitNames={submitPlayerNames}
           />
         );
-      } else if (props.gameStyle === "Two Player") {
+      } else if (props.gameStyle === false) {
         return (
               <TwoPlayerForm
                 gameType={props.gameStyle}

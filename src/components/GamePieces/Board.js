@@ -141,7 +141,6 @@ const Board = props =>{
     return (
       <GameBoard>
         <tbody>
-          {/* <tr><td>{playCount}</td></tr> */}
           <tr>
             {boardValues[0].map((value) => (
               <Square

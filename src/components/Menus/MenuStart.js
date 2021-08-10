@@ -13,15 +13,24 @@ const MenuStartDiv = styled.div`
 
 const MenuStart = props =>{
   const [menuState, setMenuState] = useState(true);
-  const [gameMode, setGameMode] = useState("");
+  const [gameMode, setGameMode] = useState();
 
     const getPlayerNames = (playerData, gameStateData) =>{
         props.getPlayerNames(playerData);
         props.gameStateChange(gameStateData);
     }
 
+    const getPlayerName = (playerData, gameStateData) => {
+      props.getPlayerName(playerData);
+      props.gameStateChange(gameStateData);
+    };
+
     const settingGameMode = mode =>{
       setGameMode(mode)
+    }
+
+    const setGameState = state =>{
+      props.getGameStyle(state);
     }
 
     const settingMenuState = state =>{
@@ -30,15 +39,17 @@ const MenuStart = props =>{
 
     return (
       <MenuStartDiv>
-        {menuState ? (
+        {menuState ? 
           <OpenScreen setGame={settingGameMode} setMenu={settingMenuState} />
-        ) : (
+         : 
           <PlayerNamesForm
             setMenu={settingMenuState}
             gameStyle={gameMode}
-            submitPlayerData={getPlayerNames}
+            submitPlayersData={getPlayerNames}
+            submitPlayerData={getPlayerName}
+            getGameStyle={setGameState}
           />
-        )}
+        }
       </MenuStartDiv>
     );
 }

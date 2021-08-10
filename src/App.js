@@ -5,28 +5,39 @@ import Game from './components/GamePieces/Game';
 
 function App() {
   const [gameState, setGameState] = useState(true);
-  const [players, setPlayers] = useState([]);
+  const [players, setPlayers] = useState();
+  const [gameMode, setGameMode] = useState();
 
   const changeGameState = gameStateInput =>{
     setGameState(gameStateInput);
   }
 
-  const setTwoPlayerNames = playerNames =>{
+  const setPlayerNames = playerNames =>{
       setPlayers([
         playerNames.player1Name,
         playerNames.player2Name
       ]);
   }
 
+  const setPlayerName = playerName =>{
+    setPlayers(playerName)
+  }
+
+  const setGameStyle = gameStyle =>{
+    setGameMode(gameStyle);
+  }
+
   return (
     <div className="App">
       {gameState ? (
         <MenuStart
-          getPlayerNames={setTwoPlayerNames}
+          getPlayerNames={setPlayerNames}
+          getPlayerName={setPlayerName}
           gameStateChange={changeGameState}
+          getGameStyle={setGameStyle}
         />
       ) : (
-        <Game names={players} gameStateChange={changeGameState} />
+        <Game names={players} mode={gameMode} gameStateChange={changeGameState} />
       )}
     </div>
   );

@@ -23,7 +23,7 @@ const OpenScreen = props =>{
         <StartButton
           onClick={() => {
             props.setMenu(false);
-            props.setGame("Single");
+            props.setGame(true);
           }}
         >
           Single Player
@@ -32,7 +32,7 @@ const OpenScreen = props =>{
         <StartButton
           onClick={() => {
             props.setMenu(false);
-            props.setGame("Two Player");
+            props.setGame(false);
           }}
         >
           Two Player
