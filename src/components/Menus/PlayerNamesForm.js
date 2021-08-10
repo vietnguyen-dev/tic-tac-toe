@@ -29,7 +29,7 @@ const PlayerNamesForm = props =>{
 
     const resetPlayerNames = ()=>{
       p1Name.current.value = "";
-      if (props.gameStyle === "Two Player"){
+      if (props.gameStyle === false){
          p2Name.current.value = "";
       }
     }
@@ -78,9 +78,7 @@ const PlayerNamesForm = props =>{
         } 
     }
 
-    const changeErrorModal = boolParam =>{
-      setErrorModal(boolParam);
-    }
+    const changeErrorModal = boolParam => setErrorModal(boolParam);
     
     const backClick = () =>{
        switch (props.gameStyle) {

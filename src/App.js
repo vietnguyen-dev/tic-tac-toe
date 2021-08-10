@@ -8,9 +8,7 @@ function App() {
   const [players, setPlayers] = useState();
   const [gameMode, setGameMode] = useState();
 
-  const changeGameState = gameStateInput =>{
-    setGameState(gameStateInput);
-  }
+  const changeGameState = gameStateInput => setGameState(gameStateInput);
 
   const setPlayerNames = playerNames =>{
       setPlayers([
@@ -19,13 +17,9 @@ function App() {
       ]);
   }
 
-  const setPlayerName = playerName =>{
-    setPlayers(playerName)
-  }
+  const setPlayerName = playerName => setPlayers(playerName);
 
-  const setGameStyle = gameStyle =>{
-    setGameMode(gameStyle);
-  }
+  const setGameStyle = gameStyle => setGameMode(gameStyle);
 
   return (
     <div className="App">

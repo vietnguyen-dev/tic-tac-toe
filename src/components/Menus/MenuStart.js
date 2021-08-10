@@ -25,17 +25,11 @@ const MenuStart = props =>{
       props.gameStateChange(gameStateData);
     };
 
-    const settingGameMode = mode =>{
-      setGameMode(mode)
-    }
+    const settingGameMode = mode => setGameMode(mode);
 
-    const setGameState = state =>{
-      props.getGameStyle(state);
-    }
-
-    const settingMenuState = state =>{
-      setMenuState(state);
-    }
+    const setGameState = state => props.getGameStyle(state);
+    
+    const settingMenuState = state => setMenuState(state);
 
     return (
       <MenuStartDiv>

@@ -45,13 +45,9 @@ const SinglePlayer = (props) => {
     }
   };
 
-  const startOver = (gameState) => {
-    props.gameStateChange(gameState);
-  };
+  const startOver = gameState => props.gameStateChange(gameState);
 
-  const playAgain = () => {
-    setEndState("");
-  };
+  const playAgain = () => setEndState("");
 
   return (
     <>
