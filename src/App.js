@@ -1,5 +1,5 @@
 import './App.css';
-import {useState} from 'react';
+import { useState } from 'react';
 import MenuStart from './components/Menus/MenuStart';
 import Game from './components/GamePieces/Game';
 
@@ -10,14 +10,10 @@ function App() {
 
   const changeGameState = gameStateInput => setGameState(gameStateInput);
 
-  const setPlayerNames = playerNames =>{
-      setPlayers([
-        playerNames.player1Name,
-        playerNames.player2Name
-      ]);
-  }
+  const setPlayerNames = playerNames => 
+    setPlayers([ playerNames.player1Name, playerNames.player2Name ]);
 
-  const setPlayerName = playerName => setPlayers(playerName);
+  const setPlayerName = playerName => setPlayers([playerName.player1Name, "Computer"]);
 
   const setGameStyle = gameStyle => setGameMode(gameStyle);
 

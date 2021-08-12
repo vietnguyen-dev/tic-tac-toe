@@ -11,7 +11,7 @@ const EndDiv = styled.div`
   background-color: green;
 `;
 
-const PlayButton = styled.button`
+const EndPlayButton = styled.button`
   padding: 1% 3%;
   border-radius: 15px;
   border: 3px solid blue;
@@ -27,7 +27,6 @@ const PlayButton = styled.button`
 `;
 
 const EndScreen = props =>{
-
     const GameState = () =>{
         if (props.ending !== 'tie'){
             return <h1>{props.ending} Win!</h1>;
@@ -39,12 +38,12 @@ const EndScreen = props =>{
     return (
       <EndDiv>
         <GameState />
-        <PlayButton onClick={() => props.playOver()}>
+        <EndPlayButton onClick={() => props.playOver()}>
           PLAY AGAIN
-        </PlayButton> <br />
-        <PlayButton onClick={() => props.restart(true)}> 
+        </EndPlayButton> <br />
+        <EndPlayButton onClick={() => props.restart(true)}> 
           RESTART
-        </PlayButton>
+        </EndPlayButton>
       </EndDiv>
     );
 }

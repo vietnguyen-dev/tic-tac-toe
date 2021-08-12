@@ -125,8 +125,8 @@ const Board = props =>{
 
         setBoardValues(newFullArr);
         checkWinState(newFullArr);
-         setPlayCount(playCount + 1);
-         props.changeTurn(props.turn);
+        setPlayCount(playCount + 1);
+        props.changeTurn(props.turn);
     }
 
     const resetBoard = () =>{
