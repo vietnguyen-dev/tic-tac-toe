@@ -10,8 +10,7 @@ function App() {
 
   const changeGameState = gameStateInput => setGameState(gameStateInput);
 
-  const setPlayerNames = playerNames => 
-    setPlayers([ playerNames.player1Name, playerNames.player2Name ]);
+  const setPlayerNames = playerNames => setPlayers([ playerNames.player1Name, playerNames.player2Name ]);
 
   const setPlayerName = playerName => setPlayers([playerName.player1Name, "Computer"]);
 

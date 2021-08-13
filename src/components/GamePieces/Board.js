@@ -150,33 +150,37 @@ const Board = props =>{
          return [[row[0][0], ""], [row[1][0], ""], [row[2][0], ""]]
       })
       setBoardValues(newBoardArr);
+    } 
+
+    const computerTurn = () =>{
+      if (props.playerName === "Computer") {
+        setTimeout(() => {
+          //add all empty boxes into array
+          let notFilledBoxes0 = boardValues[0].filter(checkEmpty);
+          let notFilledBoxes1 = boardValues[1].filter(checkEmpty);
+          let notFilledBoxes2 = boardValues[2].filter(checkEmpty);
+          let unfilledBoxes = [
+            ...notFilledBoxes0,
+            ...notFilledBoxes1,
+            ...notFilledBoxes2,
+          ];
+
+          //chose random index in array
+          let randomBox = unfilledBoxes[Math.floor(Math.random() * unfilledBoxes.length)];
+
+          //determine row it belongs to
+          let row = determineRow(randomBox);
+
+          // set Computer to fill that box with O
+          setValue(randomBox[0], row);
+          console.log(randomBox, row);
+        }, 1000);
+      }  
     }
 
-    // useEffect(()=> {
-    //   if (props.playerName === "Computer") {
-    //     setTimeout( ()=>{
-    //       //add all empty boxes into array
-    //       let notFilledBoxes0 = boardValues[0].filter(checkEmpty);
-    //       let notFilledBoxes1 = boardValues[1].filter(checkEmpty);
-    //       let notFilledBoxes2 = boardValues[2].filter(checkEmpty);
-    //       let unfilledBoxes = [
-    //         ...notFilledBoxes0,
-    //         ...notFilledBoxes1,
-    //         ...notFilledBoxes2,
-    //       ];
-
-    //       //chose random index in array
-    //       let randomBox = unfilledBoxes[Math.floor(Math.random() * unfilledBoxes.length)];
-
-    //       //determine row it belongs to
-    //       let row = determineRow(randomBox);
-
-    //       // set Computer to fill that box with O
-    //       setValue(randomBox[0], row);
-    //       //console.log(boardValues);
-    //     }, 3000)
-    //   }
-    // },[] );  
+    //  if (props.turn === "O") {
+    //    computerTurn();
+    //  }
 
     return (
       <GameBoard>
