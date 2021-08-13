@@ -37,13 +37,17 @@ const Game = props => {
 
   const startOver = gameState => props.gameStateChange(gameState);
 
-  const playAgain = () => setEndState("");
+  const playAgain = () =>{
+    setPlayerTurn([props.names[0], "X"]);
+    setEndState("");
+  } 
 
   return (
     <>
       <h3>{playerTurn[0]}'s Turn</h3>
       <Board
         endingStatus={endState}
+        playerName={playerTurn[0]}
         turn={playerTurn[1]}
         changeTurn={changeCurrentPlayer}
         winnerDeclare={deciperWinner}

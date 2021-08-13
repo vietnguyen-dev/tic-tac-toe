@@ -6,6 +6,20 @@ const GameBoard = styled.table`
     margin: auto;
 `;
 
+const checkEmpty = arr=>{
+  return arr[1] === "";
+}
+
+const determineRow = arr =>{
+  if (arr[0] >-1 && arr[0]<=2){
+    return 0
+  } else if (arr[0] >= 3 && arr[0] <= 5){
+    return 1;
+  } else if (arr[0] >= 6 && arr[0] < 10){
+    return 2;
+  }
+}
+
 const Board = props =>{
     const [playCount, setPlayCount] = useState(0);
     const [boardValues, setBoardValues] = useState([
@@ -81,7 +95,7 @@ const Board = props =>{
         boardValues[2][0][1] === props.turn
       ) {
         endDeclare("win");
-      } else if (playCount === 9) {
+      } else if (playCount === 8) {
         endDeclare("tie");
       } else {
       }  
@@ -137,6 +151,32 @@ const Board = props =>{
       })
       setBoardValues(newBoardArr);
     }
+
+    // useEffect(()=> {
+    //   if (props.playerName === "Computer") {
+    //     setTimeout( ()=>{
+    //       //add all empty boxes into array
+    //       let notFilledBoxes0 = boardValues[0].filter(checkEmpty);
+    //       let notFilledBoxes1 = boardValues[1].filter(checkEmpty);
+    //       let notFilledBoxes2 = boardValues[2].filter(checkEmpty);
+    //       let unfilledBoxes = [
+    //         ...notFilledBoxes0,
+    //         ...notFilledBoxes1,
+    //         ...notFilledBoxes2,
+    //       ];
+
+    //       //chose random index in array
+    //       let randomBox = unfilledBoxes[Math.floor(Math.random() * unfilledBoxes.length)];
+
+    //       //determine row it belongs to
+    //       let row = determineRow(randomBox);
+
+    //       // set Computer to fill that box with O
+    //       setValue(randomBox[0], row);
+    //       //console.log(boardValues);
+    //     }, 3000)
+    //   }
+    // },[] );  
 
     return (
       <GameBoard>
